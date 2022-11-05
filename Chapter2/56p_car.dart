@@ -12,12 +12,13 @@ class Car {
   int maxSpeed;
   num price;
   String name;
-  Car(int maxSpeed , num price , String name){
-    this.maxSpeed = maxSpeed;
-    this.price = price;
-    this.name = name;
-  }
-  int saleCar(){
+  Car(this.maxSpeed , this.price , this.name);
+  // Car(int maxSpeed , num price , String name){
+  //   this.maxSpeed = maxSpeed;
+  //   this.price = price;
+  //   this.name = name;
+  // }
+  num saleCar(){
     price = price * 0.9 ;
     return price;
   }
