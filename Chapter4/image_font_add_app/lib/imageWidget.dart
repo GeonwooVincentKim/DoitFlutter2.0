@@ -9,7 +9,7 @@ class ImageWidgetApp extends StatefulWidget {
 
 class _ImageWidgetApp extends State<ImageWidgetApp> {
   String _text = "HelloFlutter";
-  String _imagePath = "image/flutter_architecture.png";
+  String _imagePath = "image/flutter-architecture.png";
   double _size = 200;
   int i = 0;
   var _color = Colors.blue;
@@ -48,7 +48,7 @@ class _ImageWidgetApp extends State<ImageWidgetApp> {
           switch (i) {
             case 0:
               _text = "Hello Flutter";
-              _imagePath = "image/flutter_architecture.png";
+              _imagePath = "image/flutter-architecture.png";
               _size = 200;
               _color = Colors.blue;
               break;
