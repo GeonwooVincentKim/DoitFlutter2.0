@@ -25,7 +25,6 @@ class _MyApp extends State<MyApp> {
         home: Scaffold(
           body: Center(
             child: ElevatedButton(
-                child: Text('$test'),
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(_color)),
                 onPressed: () {
                   if (_color == Colors.blue) {
@@ -39,7 +38,8 @@ class _MyApp extends State<MyApp> {
                       _color = Colors.blue;
                     });
                   }
-                }),
+                },
+                child: Text(test)),
           ),
         ));
   }

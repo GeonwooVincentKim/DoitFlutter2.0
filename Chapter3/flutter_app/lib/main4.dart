@@ -22,8 +22,10 @@ class _MyApp extends State<MyApp>{
         home: Scaffold(
           body: Center(
             child: Switch(value: switchValue, onChanged: (value) {
-              print(value);
-              switchValue = value;
+              setState(() {
+                print(value);
+                switchValue = value;
+              });
             }),
           ),
         )

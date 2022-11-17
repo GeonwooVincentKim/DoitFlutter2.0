@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           body: Center(
             child: Switch(value : switchValue  , onChanged: (value) {
+              print(value);
               switchValue = value;
             }),
           ),
