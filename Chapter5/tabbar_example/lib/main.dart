@@ -74,10 +74,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           children: <Widget>[FirstApp(), SecondApp()],
           controller: controller,
         ),
-        bottomNavigationBar: TabBar(tabs: <Tab>[
-          Tab(icon: Icon(Icons.looks_one, color: Colors.blue),) ,
-          Tab(icon: Icon(Icons.looks_two, color: Colors.blue),)
-        ], controller: controller,
+        bottomNavigationBar: TabBar(tabs: [
+            Tab(icon: Icon(Icons.looks_one, color: Colors.blue),) ,
+            Tab(icon: Icon(Icons.looks_two, color: Colors.blue),)
+          ],
+          controller: controller,
         )
     );
   }

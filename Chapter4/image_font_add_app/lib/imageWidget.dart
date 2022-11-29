@@ -24,7 +24,8 @@ class _ImageWidgetApp extends State<ImageWidgetApp> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
               Image.asset(
                 _imagePath,
                 width: _size,
@@ -34,7 +35,7 @@ class _ImageWidgetApp extends State<ImageWidgetApp> {
               Text(
                 '$_text',
                 style: TextStyle(
-                    fontFamily: 'Pacifico', fontSize: 30, color: _color),
+                    fontFamily: 'Pacific', fontSize: 30, color: _color),
               )
             ],
           ),

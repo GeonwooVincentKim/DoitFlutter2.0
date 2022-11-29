@@ -23,33 +23,33 @@ class _SecondApp extends State<SecondApp> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: [
               TextField(
                 controller: nameController,
                 keyboardType: TextInputType.text,
                 maxLines: 1,
               ),
+              Row(children: [
+                  Radio(value: 0, groupValue: _radioValue, onChanged: _radioChange),
+                  Text('양서류'),
+                  Radio(value: 1, groupValue: _radioValue, onChanged: _radioChange),
+                  Text('포충류'),
+                  Radio(value: 2, groupValue: _radioValue, onChanged: _radioChange),
+                  Text('포유류'),
+                ],
+                mainAxisAlignment: MainAxisAlignment.spaceAround
+              ),
               Row(children: <Widget>[
-                Radio(
-                    value: 0, groupValue: _radioValue, onChanged: _radioChange),
-                Text('양서류'),
-                Radio(
-                    value: 1, groupValue: _radioValue, onChanged: _radioChange),
-                Text('포충류'),
-                Radio(
-                    value: 2, groupValue: _radioValue, onChanged: _radioChange),
-                Text('포유류'),
-              ], mainAxisAlignment: MainAxisAlignment.spaceAround),
-              Row(children: <Widget>[
-                Text('날수 있나요?'),
-                Checkbox(
+                  Text('날수 있나요?'),
+                  Checkbox(
                     value: flyExist,
                     onChanged: (bool? check) {
                       setState(() {
                         flyExist = check!;
                       });
                     })
-              ], mainAxisAlignment: MainAxisAlignment.spaceAround),
+                ],
+                mainAxisAlignment: MainAxisAlignment.spaceAround),
               Container(
                 height: 100,
                 child: ListView(

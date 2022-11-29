@@ -4,6 +4,9 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   var switchValue = false;
+
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'animalItem.dart';
@@ -27,6 +29,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
+      ),
     );
   }
 }
@@ -82,16 +87,17 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           title: Text('Listview Example'),
         ),
         body: TabBarView(
-          children: <Widget>[
+          children: [
             FirstApp(list: animalList),
             SecondApp(list: animalList)
           ],
           controller: controller,
         ),
-        bottomNavigationBar: TabBar(tabs: <Tab>[
-          Tab(icon: Icon(Icons.looks_one, color: Colors.blue),) ,
-          Tab(icon: Icon(Icons.looks_two, color: Colors.blue),)
-        ], controller: controller,
+        bottomNavigationBar: TabBar(tabs: [
+            Tab(icon: Icon(Icons.looks_one, color: Colors.blue),) ,
+            Tab(icon: Icon(Icons.looks_two, color: Colors.blue),)
+          ],
+          controller: controller,
         )
     );
   }

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  State<StatefulWidget> createState() {
-    print('createState');
-    return _MyApp();
-  }
+  State<StatefulWidget> createState() => _MyApp();
+
+  // @override
+  // State<StatefulWidget> createState() {
+  //   print('createState');
+  //   return _MyApp();
+  // }
 }
 
 class _MyApp extends State<MyApp> {
@@ -28,6 +33,24 @@ class _MyApp extends State<MyApp> {
   }
 
   @override
+  void didUpdateWidget(covariant MyApp oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget');
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    print('deactiveate');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose');
+  }
+
+  @override
   Widget build(BuildContext context) {
     print('build');
     return MaterialApp(
@@ -39,21 +62,25 @@ class _MyApp extends State<MyApp> {
         home: Scaffold(
           body: Center(
             child: ElevatedButton(
-                child: Text('$test'),
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(_color)),
                 onPressed: () {
                   if (_color == Colors.blue) {
-                    setState(() {
-                      test = 'flutter';
-                      _color = Colors.amber;
-                    });
+                    if(mounted) {
+                      setState(() {
+                        test = 'flutter';
+                        _color = Colors.amber;
+                      });
+                    }
                   } else {
-                    setState(() {
-                      test = 'flutter';
-                      _color = Colors.blue;
-                    });
+                    if(mounted) {
+                      setState(() {
+                        test = 'flutter';
+                        _color = Colors.blue;
+                      });
+                    }
                   }
-                }),
+                },
+                child: Text(test)),
           ),
         ));
   }

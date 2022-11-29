@@ -11,7 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
-      home: const MyStatelessWidget(),
+      home: Scaffold(
+          appBar: AppBar(title: const Text('Demo')),
+          body: MyStatelessWidget()
+      ),
     );
   }
 }
@@ -26,9 +29,7 @@ class MyStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Demo')),
-      body: Center(
+    return Center(
         child: ElevatedButton(
           child: const Text('SHOW BOTTOM SHEET'),
           onPressed: () {
@@ -66,7 +67,6 @@ class MyStatelessWidget extends StatelessWidget {
             );
           },
         ),
-      ),
     );
   }
 }

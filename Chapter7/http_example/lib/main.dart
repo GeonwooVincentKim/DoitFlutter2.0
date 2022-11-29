@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -35,8 +34,7 @@ class _HttpApp extends State<HttpApp> {
     _editingController = new TextEditingController();
     _scrollController = new ScrollController();
     _scrollController!.addListener(() {
-      if (_scrollController!.offset >=
-              _scrollController!.position.maxScrollExtent &&
+      if (_scrollController!.offset >= _scrollController!.position.maxScrollExtent &&
           !_scrollController!.position.outOfRange) {
         print('bottom');
         page++;
@@ -121,11 +119,12 @@ class _HttpApp extends State<HttpApp> {
   }
 
   Future<String> getJSONData() async {
+    print('query : '+_editingController!.value.text);
     var url =
         'https://dapi.kakao.com/v3/search/book?target=title&page=$page&query=${_editingController!.value.text}';
 
     var response = await http.get(Uri.parse(url),
-        headers: {"Authorization": "KakaoAK aa51bf3d875ea350a1d8bd05de36d8b8"});
+        headers: {"Authorization": "KakaoAK 4629be47afff5edd92ef3eb2d551cdab"});
 
     print(response.body); // 검색 결과 로그창으로 확인
 

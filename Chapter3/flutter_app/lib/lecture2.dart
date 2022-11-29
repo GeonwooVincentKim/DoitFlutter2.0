@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter_app/lecture.dart';
+
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
   int _counter = 0;
+  int _counter2 = 0;
   final colors  = [Colors.orange, Colors.pink, Colors.blue];
   bool isChecked = false;
 
-  MyApp({Key? key}) : super(key: key);
   void _incrementCounter() {
-    _counter++;
-    print('_counter=$_counter');
+      _counter++;
+      print('_counter=$_counter');
+      setState(() {
+      });
+  }
+
+  void _incrementCounter2() {
+    _counter2++;
+    print('_counter2=$_counter2');
   }
 
   @override
@@ -39,6 +53,10 @@ class MyApp extends StatelessWidget {
                 '$_counter',
                 style: Theme.of(context).textTheme.headline4,
               ),
+              Text(
+                '$_counter2',
+                style: Theme.of(context).textTheme.headline4,
+              ),
               //const SizedBox(height: 30),
               //Checkbox(
               //  value: isChecked,
@@ -51,11 +69,21 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
+            FloatingActionButton(
+              onPressed: _incrementCounter2,
+              tooltip: 'Increment2',
+              child: const Icon(Icons.add),
+            ),
+          ],
+        )
       ),
     );
   }
