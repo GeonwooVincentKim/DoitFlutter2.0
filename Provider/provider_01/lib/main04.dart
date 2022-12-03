@@ -5,6 +5,14 @@ void main() {
   runApp(const MyApp());
 }
 
+class Counter with ChangeNotifier {
+  int _counter = 0;
+  void increment() {
+    _counter++;
+    notifyListeners();
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -21,14 +29,6 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-  }
-}
-
-class Counter with ChangeNotifier {
-  int _counter = 0;
-  void increment() {
-    _counter++;
-    notifyListeners();
   }
 }
 
@@ -69,6 +69,7 @@ class CounterA extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    print('CounterA rebuild');
     return Container(
       color: Colors.red[100],
       padding: const EdgeInsets.all(20.0),
@@ -90,7 +91,7 @@ class Middle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('_MyHomePageState rebuild');
+    print('Middle rebuild');
     return Container(
       color: Colors.grey[200],
       padding: const EdgeInsets.all(20.0),
@@ -107,6 +108,25 @@ class Middle extends StatelessWidget {
   }
 }
 
+class CounterB extends StatelessWidget {
+  CounterB({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    print('CounterB rebuild');
+    return Row(
+      children: [
+        SiblingText('build test'),
+        Container(
+          color: Colors.yellow[100],
+          padding: const EdgeInsets.all(10.0),
+          child: Text('${context.watch<Counter>()._counter}', style: const TextStyle(fontSize: 24.0),),
+        )
+      ],
+    );
+  }
+}
+
 class Sibling extends StatelessWidget {
   const Sibling({super.key});
 
@@ -115,25 +135,17 @@ class Sibling extends StatelessWidget {
     return Container(
       color: Colors.orange[100],
       padding: const EdgeInsets.all(10.0),
-      child: const Text(
-        'Sibling',
-        style: TextStyle(fontSize: 24.0),
-      ),
+      child: Text('Sibling', style: TextStyle(fontSize: 24.0)),
     );
   }
 }
 
-class CounterB extends StatelessWidget {
-  CounterB({super.key});
+class SiblingText extends Text {
+  SiblingText(super.data);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow[100],
-      padding: const EdgeInsets.all(10.0),
-      child: Text('${context.watch<Counter>()._counter}', style: const TextStyle(fontSize: 24.0),),
-    );
+    print('SiblingText rebuild');
+    return super.build(context);
   }
-
 }
-

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+class Counter with ChangeNotifier {
+  int _counter = 0;
+  void increment() {
+    _counter++;
+    notifyListeners();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -9,31 +18,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Counter',
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=>Counter())
+      ],
+      child: const MaterialApp(
+        title: 'Counter',
+        debugShowCheckedModeBanner: false,
+        home: MyHomePage(),
+      ),
     );
+
   }
 }
 
-class MyHomePage extends StatefulWidget{
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return _MyHomePageState();
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage>{
-  int _counter = 0;
-
-  void increment() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +54,9 @@ class _MyHomePageState extends State<MyHomePage>{
               ),
             ),
             const SizedBox(height: 20.0),
-            CounterA(counter:_counter, increment: increment),
+            CounterA(),
             const SizedBox(height: 20.0),
-            Middle(counter:_counter),
+            Middle(),
           ],
         ),
       ),
@@ -65,21 +65,19 @@ class _MyHomePageState extends State<MyHomePage>{
 }
 
 class CounterA extends StatelessWidget{
-  int counter;
-  void Function() increment;
-
-  CounterA({super.key, required this.counter, required this.increment});
+  CounterA({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('CounterA rebuild');
     return Container(
       color: Colors.red[100],
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          Text('$counter', style: const TextStyle(fontSize: 48.0),),
+          Text('${context.watch<Counter>()._counter}', style: const TextStyle(fontSize: 48.0),),
           ElevatedButton(
-              onPressed: increment,
+              onPressed: context.read<Counter>().increment,
               child: const Text('Increment', style: TextStyle(fontSize: 20.0),)
           )
         ],
@@ -89,8 +87,7 @@ class CounterA extends StatelessWidget{
 }
 
 class Middle extends StatelessWidget {
-  int counter;
-  Middle({super.key, required this.counter});
+  Middle({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,11 +99,25 @@ class Middle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CounterB(counter:counter),
+          CounterB(),
           const SizedBox(width: 20.0),
           const Sibling()
         ],
       ),
+    );
+  }
+}
+
+class CounterB extends StatelessWidget {
+  CounterB({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    print('CounterB rebuild');
+    return Container(
+      color: Colors.yellow[100],
+      padding: const EdgeInsets.all(10.0),
+      child: Text('${context.watch<Counter>()._counter}', style: const TextStyle(fontSize: 24.0),),
     );
   }
 }
@@ -125,21 +136,5 @@ class Sibling extends StatelessWidget {
       ),
     );
   }
-}
-
-class CounterB extends StatelessWidget {
-  int counter;
-
-  CounterB({super.key, required this.counter});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow[100],
-      padding: const EdgeInsets.all(10.0),
-      child: Text('$counter', style: const TextStyle(fontSize: 24.0),),
-    );
-  }
-
 }
 

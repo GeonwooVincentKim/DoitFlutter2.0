@@ -72,6 +72,7 @@ class CounterA extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    print('CounterA rebuild');
     return Container(
       color: Colors.red[100],
       padding: const EdgeInsets.all(20.0),
@@ -94,6 +95,7 @@ class Middle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Middle rebuild');
     return Container(
       color: Colors.grey[200],
       padding: const EdgeInsets.all(20.0),
@@ -110,11 +112,28 @@ class Middle extends StatelessWidget {
   }
 }
 
+class CounterB extends StatelessWidget {
+  int counter;
+
+  CounterB({super.key, required this.counter});
+
+  @override
+  Widget build(BuildContext context) {
+    print('CounterB rebuild');
+    return Container(
+      color: Colors.yellow[100],
+      padding: const EdgeInsets.all(10.0),
+      child: Text('$counter', style: const TextStyle(fontSize: 24.0),),
+    );
+  }
+}
+
 class Sibling extends StatelessWidget {
   const Sibling({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('Sibling rebuild');
     return Container(
       color: Colors.orange[100],
       padding: const EdgeInsets.all(10.0),
@@ -124,21 +143,5 @@ class Sibling extends StatelessWidget {
       ),
     );
   }
-}
-
-class CounterB extends StatelessWidget {
-  int counter;
-
-  CounterB({super.key, required this.counter});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow[100],
-      padding: const EdgeInsets.all(10.0),
-      child: Text('$counter', style: const TextStyle(fontSize: 24.0),),
-    );
-  }
-
 }
 

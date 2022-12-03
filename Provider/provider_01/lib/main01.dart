@@ -17,16 +17,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget{
+class MyHomePage extends StatelessWidget{
   const MyHomePage({super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return _MyHomePageState();
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage>{
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +91,19 @@ class Middle extends StatelessWidget {
   }
 }
 
+class CounterB extends StatelessWidget {
+  const CounterB({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellow[100],
+      padding: const EdgeInsets.all(10.0),
+      child: const Text('0', style: TextStyle(fontSize: 24.0),),
+    );
+  }
+}
+
 class Sibling extends StatelessWidget {
   const Sibling({super.key});
 
@@ -113,19 +118,5 @@ class Sibling extends StatelessWidget {
       ),
     );
   }
-}
-
-class CounterB extends StatelessWidget {
-  const CounterB({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow[100],
-      padding: const EdgeInsets.all(10.0),
-      child: const Text('0', style: TextStyle(fontSize: 24.0),),
-    );
-  }
-
 }
 
