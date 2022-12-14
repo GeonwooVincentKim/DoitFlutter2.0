@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.os.Build
 import android.util.Base64
 import androidx.annotation.NonNull;
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
 import io.flutter.plugin.common.MethodChannel

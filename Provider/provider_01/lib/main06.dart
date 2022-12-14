@@ -119,6 +119,7 @@ class CounterB extends StatelessWidget {
     return Row(
       children: [
         SiblingText(),
+        const SizedBox(width: 20.0),
         Container(
           color: Colors.yellow[100],
           padding: const EdgeInsets.all(10.0),

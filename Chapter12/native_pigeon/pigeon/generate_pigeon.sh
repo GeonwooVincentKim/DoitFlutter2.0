@@ -1,0 +1,1 @@
+C:\tools\flutter-3.3.6\bin\flutter.bat pub run pigeon --input pigeon/device_schema.dart --dart_out lib/deviceInfoService.dart --java_out .\android\app\src\main\java\io\flutter\plugins\DeviceInfoService.java --java_package "io.flutter.plugins"

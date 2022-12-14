@@ -28,7 +28,7 @@ class _IntroPage extends State<IntroPage> {
           child: Column(
             children: [
               logo,
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.of(context)
                       .pushReplacement(MaterialPageRoute(builder: (context) {
