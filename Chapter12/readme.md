@@ -11,4 +11,8 @@
     --java_out .\android\app\src\main\java\io\flutter\plugins\DeviceInfoService.java \
     --java_package "io.flutter.plugins"
   ```
-  
+* 참조한 문서
+  - flutter 공식 문서
+    - https://docs.flutter.dev/development/platform-integration/platform-channels?tab=type-mappings-kotlin-tab
+  - pigeon 공식 문서
+    - https://pub.dev/packages/pigeon/example
